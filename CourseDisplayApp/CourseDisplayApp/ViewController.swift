@@ -23,10 +23,12 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var crsSem: UILabel!
     
+    var imageNumber = 0
     
-    let courses = [["44555", "Network Security", "fall"],
-                   ["44643/4443", "Mobile Edge", "spring"],
-                   ["44689", "Data Streaming", "summer"]]
+    
+    let courses = [["img01", "44555", "Network Security", "fall"],
+                   ["img02", "44643/4443", "Mobile Edge", "spring"],
+                   ["img03", "44689", "Data Streaming", "summer"]]
     
     
     override func viewDidLoad() {
@@ -37,19 +39,45 @@ class ViewController: UIViewController {
         
         PrevButton.isEnabled = false
         
+        //first element and its details of an array should be displayed
+        updateData(imgNum: imageNumber)
+        
     }
     
     
     @IBAction func PreviousButtonPressed(_ sender: UIButton) {
-        //previous button should be disabled if the user iiterated all the images.
+        
+        NextButton.isEnabled = true
+        
         //Display images in the reverse direction.
+        imageNumber -= 1
+        updateData(imgNum: imageNumber)
+        
+        //previous button should be disabled if the user iterated all the images.
+        if imageNumber == 0{
+            PrevButton.isEnabled = false;
+        }
     }
     
     
     @IBAction func NextButtonPressed(_ sender: UIButton) {
         //previous button should be enabled
+        PrevButton.isEnabled = true
         //the next element in an array must be displayed
+        imageNumber += 1
+        updateData(imgNum: imageNumber)
+        
         //if the user reaches the end of array, the next button should be disabled.
+        if imageNumber == courses.count-1{
+            NextButton.isEnabled = false
+        }
+    }
+    
+    func updateData(imgNum: Int){
+        ImageDisplay.image = UIImage(named: courses[imgNum][0])
+        crsNum.text = courses[imgNum][1]
+        crsTitle.text = courses[imgNum][2]
+        crsSem.text = courses[imgNum][3]
     }
     
 
