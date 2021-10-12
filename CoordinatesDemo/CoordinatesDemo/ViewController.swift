@@ -51,18 +51,32 @@ class ViewController: UIViewController {
         var h = ImageViewOutlet.frame.height
         h = h + 100
         
-        var x = ImageViewOutlet.frame.origin.x-50
-        var y = ImageViewOutlet.frame.origin.y-50
+        let x = ImageViewOutlet.frame.origin.x-50
+        let y = ImageViewOutlet.frame.origin.y-50
         
-       var imageFrame =  CGRect(x:x, y:y, width:w, height:h)
-        
-        print(ImageViewOutlet.frame)
-        
-        ImageViewOutlet.frame = imageFrame
+        let imageFrame =  CGRect(x:x, y:y, width:w, height:h)
         
         print(ImageViewOutlet.frame)
         
+        //ImageViewOutlet.frame = imageFrame
         
+        print(ImageViewOutlet.frame)
+        
+//        UIView.animate(withDuration: 1, delay: 1, animations: {
+//            self.ImageViewOutlet.frame = imageFrame
+//        })
+        
+        UIView.animate(withDuration: 1, delay: 1, usingSpringWithDamping: 1, initialSpringVelocity: 50,  animations: {
+            self.ImageViewOutlet.frame = imageFrame
+            self.ImageViewOutlet.alpha = 1
+        })
+
+//        UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 50, animations:{
+//            self.ImageViewOutlet.frame = imageFrame
+            //self.ImageViewOutlet.alpha = 0.0
+     //   })
+        
+
         
     }
     
